@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import Preloader from './Preloader'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
-document.title = 'GoNomad'
 function Home() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const Preloader = () => {
-    return (
-      <div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1>... Loading</h1>
-      </div>
-    )
-  }
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
 
   return (
     <>
-      {!isLoading && <Preloader />}
-      {/* {!isLoading && <Hero />} */}
+      {isLoading && <Preloader />}
+      {!isLoading && <Hero />}
 
       <Footer />
     </>
